@@ -1,0 +1,51 @@
+Web Application 규약(표준)
+
+1. 소위 "Document Root" 역할을 하는 폴더가 있어야한다.
+
+-  webapp 폴더
+
+2. "Document Root" 역할의 폴더 밑에는 반드시 "WEB-INF"라는 폴더가 있어야 한다
+ - dnfldprpsms webapp/WEB-INF 폴더
+
+3. 위 2의 "WEB-INF" 폴더 밑에, 웹어플리케이션 설정파일인 "web.xml"파일이 있어야 한다
+ - 우리에게는 webapp/WEB-INF/web.xml 파일
+ - 낮은 규약(표준)에서는 필수였지만, 지금은 optional(선택)이다.
+ 
+* 위에서 언급된 "Document"가 무엇인가? 
+ 1. 정적인 문서 - XXX.html, XXX.css, XXX.js, XXX.jpg, XXX.mp3/mp4 등등 변하지 않는 파일
+    (Static Document)
+ 2. 동적인 문서 - 매번 브라우저 요청시마다, 그 내용이 변하는 문서
+    (Servlet/JSP)
+
+* 그럼 위에서 언급된 "Document Root"란 무엇인가?
+  바로 1. 정적인 문서 + 2. 동적인 문서 파일들을 저장하는 top-level 디렉토리를 의미
+
+
+Document Root/WEB-INF/web.xml
+- 배포설명자 ( Deplotment Descriptor) 라고 부른다.
+- 웹어플리케이션을 WAS에 배포할 때 (서비스가 가능하도록 WAS 안에 집어넣을 때) XXX.war파일로 배포
+   1) XXX.war (.war : Web Archive) --> jar 파일
+   2) XXX.ear (.ear : Enterprise Archive) --> jar 파일 
+
+*JDK = JRE + 각종 개발도구(jar, jarsign, jmc, jshell,...)
+
+* 백엔드 표준 구현기술인 Servlet/JSP
+1. Servlet
+2. Filter
+3. Listener
+4. JSP
+
+https://www.naver.com/ --> 웹 서버(파일서비스 서버): NginX
+
+* 웹서버 : 정적인 문서들만 서비스(파일 읽어다가 응답으로 보내줌) 해주는 서버
+
+* Apache Tomcat: 2가지 역할을 동시에 수행
+1. 웹서버 (Web Server)	: 파일서비스(정적인 문서 서비스)
+2. WAS (Web Application Server) ": 동적인 문서 생성 (***)
+
+Clinet가 요청한 응답을 웹서버가 받아서 동적인 문서는 Client로 응답한다. 
+동적인 문서가 필요한 경우에는 웹서버가 WAS에 요청해서 받고, 만약 WAS가 DB에 대한 내용이 필요하면 DB에 접근하여 필요한 데이터를 불러들인다. 
+이렇게 해서 만들어진 동적인 응답은 웹서버를 통해서 다시 Clinet에게 전달 된다.
+
+
+
